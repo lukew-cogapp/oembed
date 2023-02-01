@@ -6,7 +6,8 @@ const { setProviderList } = require("@extractus/oembed-extractor");
 const serverless = require("serverless-http");
 const path = require("path");
 const https = require("https");
-const fetch = "node-fetch";
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 require("encoding");
 
@@ -24,23 +25,27 @@ const router = express.Router();
 
 const providers = [
   {
-    provider_name: "Localhost",
-    provider_url: "http://localhost",
-    endpoints: [{ url: "http://localhost/oembed" }],
+    provider_name: "Netlify",
+    provider_url: "https://cerulean-malabi-2996d0.netlify.app",
+    endpoints: [
+      {
+        url: "https://cerulean-malabi-2996d0.netlify.app/.netlify/functions/server/oembed",
+      },
+    ],
   },
 ];
 
 setProviderList(providers);
 
 router.get("/viewoembed", async (req, res) => {
-  const result = await extract("/");
+  const result = await extract("https://cerulean-malabi-2996d0.netlify.app");
   res.send(result);
 });
 
 router.get("/oembed", async (req, res) => {
-  // let manifestURL = req.query.url;
-  let manifestURL =
-    "https://collections.snm.ku.dk/en/api/iiif/object/NHMD616060/manifest";
+  let manifestURL = req.query.url;
+  // let manifestURL =
+  // "https://collections.snm.ku.dk/en/api/iiif/object/NHMD616060/manifest";
   try {
     const response = await fetch(manifestURL);
     const json = await response.json();
