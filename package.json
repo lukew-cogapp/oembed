@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=16.17.0",
+    "npm": ">=8.15.0"
   },
   "scripts": {
     "build": "netlify-lambda build express",
@@ -20,6 +20,7 @@
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
     "netlify-lambda": "^2.0.15",
+    "node-fetch": "^2.6.9",
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "serverless-http": "^3.1.1"

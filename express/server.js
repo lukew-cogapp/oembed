@@ -6,6 +6,8 @@ const { setProviderList } = require("@extractus/oembed-extractor");
 const serverless = require("serverless-http");
 const path = require("path");
 const https = require("https");
+const fetch = "node-fetch";
+
 require("encoding");
 
 const app = express();
