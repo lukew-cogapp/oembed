@@ -5,8 +5,8 @@ const { setProviderList } = require("@extractus/oembed-extractor");
 // import fs from "fs";
 const serverless = require("serverless-http");
 const path = require("path");
-
 const https = require("https");
+require("encoding");
 
 const app = express();
 const router = express.Router();
