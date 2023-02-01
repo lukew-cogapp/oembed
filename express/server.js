@@ -66,7 +66,9 @@ router.get("/oembed", async (req, res) => {
 
 // https.createServer(options, app).listen(443);
 app.use("/.netlify/functions/server", router);
-app.use("/", (req, res) => res.sendFile(path.join(__dirname, "../index.html")));
+app.use("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "../dist/index.html"))
+);
 
 module.exports = app;
 module.exports.handler = serverless(app);
